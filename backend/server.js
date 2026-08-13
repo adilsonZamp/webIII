@@ -15,6 +15,7 @@ app.get('/cep/:tipo/:uf/:cidade/:rua', async (req, res) => {
     const {uf, cidade, rua, tipo} = req.params;
 
     try {
+        //validações de acordo com que a viacep espera para esse endpoint
         if (tipo !== "json" && tipo !== "xml") {
             throw new Error("Tipo de retorno inválido");
         } 
@@ -22,7 +23,7 @@ app.get('/cep/:tipo/:uf/:cidade/:rua', async (req, res) => {
             throw new Error("Quantidade de caracteres insuficiente");
         }
 
-        const consulta = await axios.get(`viacep.com.br/ws/${uf}/${cidade}/${rua}/${tipo}/`);
+        const consulta = await axios.get(`https://viacep.com.br/ws/${uf}/${cidade}/${rua}/${tipo}/`);
 
         res.send(consulta.data);
     } catch (error) {
