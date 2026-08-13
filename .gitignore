@@ -1,1 +1,21 @@
-/backend/node_modules
+# Dependências Node
+node_modules/
+**/node_modules/
+
+# Variáveis de ambiente
+.env
+.env.*
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Builds
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
