@@ -11,6 +11,25 @@ app.get('/api/mensagem', (req, res) => {
     res.send('Hello World!');
 });
 
+app.get('/cep/:tipo/:uf/:cidade/:rua', async (req, res) => {
+    const {uf, cidade, rua, tipo} = req.params;
+
+    try {
+        if (tipo !== "json" && tipo !== "xml") {
+            throw new Error("Tipo de retorno inválido");
+        } 
+        if (uf.length != 2 || cidade < 4 || rua < 4) {
+            throw new Error("Quantidade de caracteres insuficiente");
+        }
+
+        const consulta = await axios.get(`viacep.com.br/ws/${uf}/${cidade}/${rua}/${tipo}/`);
+
+        res.send(consulta.data);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+});
+
 app.get('/cep/:cep', async (req, res) => {
     const { cep } = req.params;
     
