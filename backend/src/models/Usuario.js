@@ -4,37 +4,37 @@ const { sequelize } = require('../instances/mysql')
 
 class usuario extends Model { }
 
-usuario.init {
+usuario.init (
     {
         id: {
-            type: DataTypes.INTEGER;
-            primaryKey: true;
-            autoIncrement: true;
-        };
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+        },
         nome: {
-            type: DataTypes.STRING;
-            allowNull: false;
-        };
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         email: {
-            type: DataTypes.STRING;
-            allowNull: false;
-            unique: true;            
-        };
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true,            
+        },
         senha: {
-            type: DataTypes.STRING;
-            allowNull: false;
-        };
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         foto: {
-            type: DataTypes.TEXT('long');
-            allowNull: true;
+            type: DataTypes.TEXT('long'),
+            allowNull: true,
         }
-    };
+    },
     {
-        sequelize;
-        modelName: 'Usuario';
-        tableName: 'usuarios';
+        sequelize,
+        modelName: 'Usuario',
+        tableName: 'usuarios',
         timestamps: true
     }
-};
+);
 
 module.exports = Usuario
