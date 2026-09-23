@@ -1,14 +1,12 @@
-const usuariosService = require('../services/UsuarioService')
+const usuarioService = require('../services/usuarioService');
 
 const buscarUsuarios = async (req, res) => {
     try {
-        const usuarios = await usuarioService.obterTodosUsuarios()
-        res.status(200).json({data: usuarios})
-    } catch (error) {
-        res.status(500).json({error: "Erro interno no servidor"})
+        const usuarios = await usuarioService.obterTodosUsuarios();
+        res.status(200).json({ data: usuarios });
+    } catch(err) {
+        res.status(500).json({ err: 'Erro interno ao buscar usuarios'});
     }
-}
+};
 
-module.exports = {
-    buscarUsuarios
-}
+module.exports = { buscarUsuarios }

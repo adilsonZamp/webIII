@@ -1,9 +1,7 @@
-const Usuario = require('../models/Usuario')
+const Usuario = require('../models/Usuario');
 
 const obterTodosUsuarios = async () => {
     return await Usuario.findAll();
-}
+};
 
-module.exports = {
-    obterTodosUsuarios
-}
+module.exports = { obterTodosUsuarios }

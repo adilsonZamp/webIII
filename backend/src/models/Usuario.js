@@ -2,9 +2,9 @@ const { DataTypes, Model } = require('sequelize')
 const bcrypt = require('bcrypt')
 const { sequelize } = require('../instances/mysql')
 
-class usuario extends Model { }
+class Usuario extends Model { }
 
-usuario.init (
+Usuario.init (
     {
         id: {
             type: DataTypes.INTEGER,
@@ -37,4 +37,4 @@ usuario.init (
     }
 );
 
-module.exports = Usuario
+module.exports = Usuario;
