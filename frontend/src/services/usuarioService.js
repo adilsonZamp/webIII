@@ -1,3 +1,4 @@
+import { formToJSON } from 'axios'
 import api from './api'
 
 export const getUsuarios = async (search = '') => {
@@ -15,7 +16,7 @@ export const getUsuario = async (id) => {
 }
 
 export const createUsuario = async (data) => {
-    const response = await api.post('/usuarios', data)
+    const response = await api.post('/usuarios/criar', data)
 
     return response.data
 }
