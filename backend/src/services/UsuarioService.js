@@ -6,7 +6,13 @@ const obterTodosUsuarios = async () => {
 };
 
 const inserirUsuario = async (nome, email, senha) => {
-    return await Usuario.create({ nome, email, senha });
+    const usuario = await Usuario.create({ nome, email, senha });
+
+    return {
+        id: usuario.id,
+        nome: usuario.nome,
+        email: usuario.email
+    };
 }
 
 const buscarUsuarioPorID = async (id) => {
