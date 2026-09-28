@@ -1,11 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const usuarioController = require('../controllers/UsuarioController');
- 
-router.get('/', usuarioController.buscarUsuarios);
-router.get('/buscar/:id', usuarioController.buscarUsuarioPorID);
+const { autenticar, autorizar } = require('../middleware/AuthMiddleware');
+
+//publicas
 router.post('/criar', usuarioController.novoUsuario);
-router.post("/excluir/:id", usuarioController.deletarUsuario);
-router.patch('/:id', usuarioController.alterarUsuario);
+
+//protegidas
+router.get('/', autenticar, usuarioController.buscarUsuarios);
+router.get('/buscar/:id', autenticar, usuarioController.buscarUsuarioPorID);
+router.post("/excluir/:id", autenticar, autorizar('admin'), usuarioController.deletarUsuario);
+router.patch('/:id', autenticar, usuarioController.alterarUsuario);
 
 module.exports = router;

@@ -4,7 +4,7 @@ const { sequelize } = require('../instances/mysql')
 
 class Usuario extends Model { }
 
-Usuario.init (
+Usuario.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -18,7 +18,7 @@ Usuario.init (
         email: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true,            
+            unique: true,
         },
         senha: {
             type: DataTypes.STRING,
@@ -33,7 +33,19 @@ Usuario.init (
         sequelize,
         modelName: 'Usuario',
         tableName: 'usuarios',
-        timestamps: true
+        timestamps: true,
+        defaultScope: {
+            attributes: {
+                exclude: ['senha']
+            }
+        },
+        scopes: {
+            comSenha: {
+                attributes: {
+                    include: ['senha']
+                }
+            }
+        }
     }
 );
 

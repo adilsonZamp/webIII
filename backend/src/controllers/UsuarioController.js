@@ -1,5 +1,6 @@
 const Usuario = require('../models/Usuario');
 const usuarioService = require('../services/usuarioService');
+const bcrypt = require('bcrypt');
 
 const buscarUsuarios = async (req, res) => {
 	try {
@@ -16,7 +17,9 @@ const novoUsuario = async (req, res) => {
 
 		if (!nome || !email || !senha) return res.status(400).json({ err: 'Dados inválidos' });
 
-		const usuario = await usuarioService.inserirUsuario(nome, email, senha);
+		const hash = await bcrypt.hash(senha, 10)
+
+		const usuario = await usuarioService.inserirUsuario(nome, email, hash);
 		res.status(201).json(usuario);
 	} catch (err) {
 		console.error(err);
