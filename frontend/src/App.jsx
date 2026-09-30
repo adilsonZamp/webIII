@@ -3,6 +3,9 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { LayoutDashboard, Users, Settings, LogOut, Sun, Moon, Activity } from 'lucide-react';
 import Home from './pages/Home/Home';
 import Usuarios from './pages/Usuarios/Usuarios';
+import RotaPrivada from './components/RotaPrivada';
+import Login from './pages/Login/Login';
+import PainelAdmin from './pages/PainelAdmin/PainelAdmin'
 
 function App() {
   const [theme, setTheme] = useState('light');
@@ -16,7 +19,22 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
+    <Routes>
+      <Route path='/Login' element={<Login />} />
+      <Route path='/usuarios' element={
+        <RotaPrivada><Usuarios /></RotaPrivada>
+      } />
+      <Route path='/admin' element={
+        <RotaPrivada><PainelAdmin /></RotaPrivada>
+      } />
+    </Routes>
+  );
+}
+
+export default App;
+
+/*
+<BrowserRouter>
       <div className="app-layout">
         <aside className="sidebar">
           <div className="sidebar-header">
@@ -70,7 +88,4 @@ function App() {
         </div>
       </div>
     </BrowserRouter>
-  );
-}
-
-export default App;
+*/
