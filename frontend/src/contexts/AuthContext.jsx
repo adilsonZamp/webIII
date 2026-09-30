@@ -6,7 +6,14 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const [usuario, setUsuario] = useState(() => {
         const salvo = localStorage.getItem('usuario');
-        return salvo ? JSON.parse(salvo) : null;
+        //provavel erro ao recuperar dados do localstorage
+        console.log("LocalStorage DATA: "+salvo.valueOf() != "undefined" ? salvo : "null");
+
+        if (salvo.valueOf() == "undefined") {
+            console.log("LocalStorage DATa undefined: "+salvo ? salvo : "null");        
+        }
+        
+        return salvo.valueOf() != "undefined" ? JSON.parse(salvo) : null;
     })
 
     const [carregando, setCarregando] = useState(false);
