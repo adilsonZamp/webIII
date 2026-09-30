@@ -10,6 +10,7 @@ api.interceptors.request.use((config) => {
     if (token) {
         config.headers.Authorization = `Bearer ${token}`;
     }
+    config.headers.Authorization = `Bearer (token fixo se necessário para testes)`;
     return config;
 });
 
