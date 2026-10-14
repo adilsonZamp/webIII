@@ -1,13 +1,20 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
+import { GoogleLogin } from '@react-oauth/google'
 
 function Login() {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
 
-    const {entrar, carregando, erro} = useAuth();
+    const {entrar, carregando, erro, entrarComGoogle} = useAuth();
     const navigate = useNavigate();
+
+    const handleGoogle = async (resposta) => {
+        // resposta.credential é o id_token assinado pelo Google
+        const deuCerto = await entrarComGoogle(resposta.credential);
+        if (deuCerto) navigate('/usuarios');
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,16 +26,26 @@ function Login() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h1>Entrar</h1>
+        <div>
+            <form onSubmit={handleSubmit}>
+                <h1>Entrar</h1>
 
-            <input type="email" placeholder="Email" required value={email} onChange={(e) => {setEmail(e.target.value)}}/>
-            <input type="password" placeholder="Senha" required value={senha} onChange={(e) => {setSenha(e.target.value)}}/>
-            {erro && <p style={{color: 'red'}}>{erro}</p>}
-            <button type="submit" disabled={carregando}>
-                {carregando ? 'Entrando...' : 'Entrar'}
-            </button>
-        </form>
+                <input type="email" placeholder="Email" required value={email} onChange={(e) => {setEmail(e.target.value)}}/>
+                <input type="password" placeholder="Senha" required value={senha} onChange={(e) => {setSenha(e.target.value)}}/>
+                {erro && <p style={{color: 'red'}}>{erro}</p>}
+                <button type="submit" disabled={carregando}>
+                    {carregando ? 'Entrando...' : 'Entrar'}
+                </button>
+            </form>
+            <a href="/registrar">Criar conta</a>
+            <p>ou</p>
+
+            <GoogleLogin
+                onSuccess={handleGoogle}
+                onError={() => console.log('Login com Google falhou')}
+            />
+        </div>
+
     );
 }
 

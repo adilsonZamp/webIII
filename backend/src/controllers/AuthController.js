@@ -1,5 +1,22 @@
 const authService = require('../services/AuthService');
 
+const loginGoogle = async (req, res) => {
+    try {
+        //s no final
+        const { credentials } = req.body;
+
+        if (!credentials) {
+            return res.status(400).json({ error: 'Credentials não enviado' });
+        }
+
+        const dados = await authService.loginComGoogle(credentials);
+        return res.status(200).json(dados);
+
+    } catch (error) {
+        return res.status(401).json({ error: 'Falha na autenticação com o Google' });
+    }
+};
+
 const login = async (req, res) => {
     try {        
         const { email, senha } = req.body;
@@ -21,4 +38,4 @@ const login = async (req, res) => {
     }
 };
 
-module.exports = { login };
+module.exports = { login, loginGoogle };

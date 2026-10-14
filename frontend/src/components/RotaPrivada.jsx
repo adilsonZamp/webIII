@@ -5,7 +5,7 @@ function RotaPrivada({children, perfilNecessario}) {
     const {usuario} = useAuth();
 
     if (!usuario) {
-        return <Navigate to="/Login" replace />
+        return <Navigate to="/login" replace />
     }
 
     if (perfilNecessario && usuario.perfil !== perfilNecessario) {

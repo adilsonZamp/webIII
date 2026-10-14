@@ -6,12 +6,14 @@ import Usuarios from './pages/Usuarios/Usuarios';
 import RotaPrivada from './components/RotaPrivada';
 import Login from './pages/Login/Login';
 import PainelAdmin from './pages/PainelAdmin/PainelAdmin'
+import Registrar from './pages/Registrar/Registrar'
 
 function App() {
   const [theme, setTheme] = useState('light');
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
+    //checar se está logado e redirecionar de acordo
   }, [theme]);
 
   const toggleTheme = () => {
@@ -20,6 +22,7 @@ function App() {
 
   return (
     <Routes>
+      <Route path='/registrar' element={<Registrar />} />
       <Route path='/login' element={<Login />} />
       <Route path='/usuarios' element={
         <RotaPrivada><Usuarios /></RotaPrivada>
