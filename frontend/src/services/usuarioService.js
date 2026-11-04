@@ -2,9 +2,13 @@ import { formToJSON } from 'axios'
 import api from './api'
 
 export const getUsuarios = async (search = '') => {
-    const response = await api.get('/usuarios', {
-        params: {search}
-    })
+    const response = await api.get('/usuarios'
+        , {params: {search}}
+        // teste
+    )
+
+    console.log("RESPONSE GET USUARIOOOS"+response);
+    
 
     return response.data
 }

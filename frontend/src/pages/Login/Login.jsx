@@ -21,6 +21,8 @@ function Login() {
         const deuCerto = await entrar(email, senha);
 
         if (deuCerto) {
+            console.log("AAAAAAA OLHA DEU CERTO");
+            
             navigate('/usuarios');
         }
     };

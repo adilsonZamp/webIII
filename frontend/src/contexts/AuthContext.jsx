@@ -1,19 +1,21 @@
 import { createContext, useContext, useState } from "react";
 import * as authService from '../services/authService';
-import { getUsuario } from "../services/usuarioService";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [usuario, setUsuario] = useState(() => {
         const salvo = localStorage.getItem('usuario');
+        console.log("SALVOOOOOOOO "+salvo);
+        
         //provavel erro ao recuperar dados do localstorage
         if (salvo) {
+            console.log("ENTROU NO IF SALVOOOOO");
             console.log("LocalStorage DATA: "+salvo.valueOf() != "undefined" ? salvo : "null");
             if (salvo.valueOf() == "undefined") {
                 console.log("LocalStorage DATa undefined: "+salvo ? salvo : "null");        
             }
-                
+               
             return salvo.valueOf() != "undefined" ? JSON.parse(salvo) : null;
         }
     })
@@ -29,10 +31,9 @@ export const AuthProvider = ({ children }) => {
             const dados = await authService.login(email, senha);
             console.log("res:"+dados.data.token, "user:"+toString(dados.data.usuario));
             //object promisse error
-            authService.salvarSessao(dados.data.token, dados.data.usuario);
+            await authService.salvarSessao(dados.data.token, dados.data.usuario);
 
-            await setUsuario(dados.usuario);
-            console.log("getUser(): "+getUsuario(), "localstorage:"+ localStorage.getItem('usuario'));
+            setUsuario(dados.data.usuario);
             
             return true;
         } catch (error) {

@@ -10,13 +10,11 @@ api.interceptors.request.use((config) => {
     if (token) {
         config.headers.Authorization = `Bearer ${token}`;
     }
-    config.headers.Authorization = `Bearer (token fixo se necessário para testes)`;
     return config;
 });
 
 api.interceptors.response.use(
-    (response) => response,          // sucesso: repassa direto
-
+    (response) => response,
     (error) => {
         if (error.response?.status === 401) {
             localStorage.removeItem('token');
@@ -28,4 +26,4 @@ api.interceptors.response.use(
     }
 );
 
-export default api
+export default api;

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, Router, Navigate, useNavigate } from 'react-router-dom';
 import { LayoutDashboard, Users, Settings, LogOut, Sun, Moon, Activity } from 'lucide-react';
 import Home from './pages/Home/Home';
 import Usuarios from './pages/Usuarios/Usuarios';
@@ -10,10 +10,18 @@ import Registrar from './pages/Registrar/Registrar'
 
 function App() {
   const [theme, setTheme] = useState('light');
+  const navigate = useNavigate();
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
     //checar se está logado e redirecionar de acordo
+    // nn pode ser aqui pois sempre redireciona ao navegar
+    // let user = document.documentElement.getAttribute('usuario');
+    // if (user == null || user == undefined) {
+    //   navigate('/usuarios');
+    // } else {
+    //   navigate('/login');
+    // }
   }, [theme]);
 
   const toggleTheme = () => {

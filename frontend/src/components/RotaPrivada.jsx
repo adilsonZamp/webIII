@@ -2,8 +2,9 @@ import { Navigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
 function RotaPrivada({children, perfilNecessario}) {
-    const {usuario} = useAuth();
-
+    const {usuario} = useAuth();//undefined
+    console.log("USUARIO:::"+usuario);
+    
     if (!usuario) {
         return <Navigate to="/login" replace />
     }

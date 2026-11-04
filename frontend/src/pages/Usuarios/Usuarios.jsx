@@ -32,7 +32,7 @@ function Usuarios() {
     };
 
     const fetchUsuarios = async () => {
-        try {
+        try {            
             const data = await getUsuarios();
             setUsers(data.data || []);
         } catch (err) {
@@ -43,6 +43,8 @@ function Usuarios() {
     };
 
     useEffect(() => {
+            console.log("GETCHJJJJJJJJJJJJJJ");
+
         fetchUsuarios();
     }, []);
 
