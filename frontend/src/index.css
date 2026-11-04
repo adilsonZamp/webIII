@@ -9,51 +9,63 @@
   -moz-osx-font-smoothing: grayscale;
 
   /* LIGHT THEME (Padrão) */
-  --bg-global: #f4f6f8;
+  --bg-global: #f3f6f5;
   --bg-sidebar: #ffffff;
   --bg-navbar: #ffffff;
-  --bg-content: #f4f6f8;
-  --text-primary: #1e1e1e;
-  --text-secondary: #637381;
-  --border-color: rgba(145, 158, 171, 0.24);
-  --hover-bg: rgba(145, 158, 171, 0.08);
-  --primary-color: #4facfe;
+  --bg-content: #f3f6f5;
+  --text-primary: #20302e;
+  --text-secondary: #71817e;
+  --border-color: rgba(39, 72, 65, 0.13);
+  --hover-bg: rgba(39, 112, 95, 0.07);
+  --primary-color: #328a73;
   --card-bg: #ffffff;
-  --badge-bg: rgba(79, 172, 254, 0.15);
-  --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  --badge-bg: rgba(50, 138, 115, 0.12);
+  --shadow: 0 8px 26px rgba(28, 54, 49, 0.06);
 }
 
 [data-theme='dark'] {
   /* DARK THEME */
-  --bg-global: #0d0d0f;
-  --bg-sidebar: #161619;
-  --bg-navbar: #1a1a1d;
-  --bg-content: radial-gradient(circle at top left, #1a1a1d, #0d0d0f);
-  --text-primary: #ffffff;
-  --text-secondary: #919eab;
-  --border-color: rgba(255, 255, 255, 0.05);
-  --hover-bg: rgba(255, 255, 255, 0.03);
-  --primary-color: #4facfe;
-  --card-bg: rgba(0, 0, 0, 0.3);
-  --badge-bg: rgba(79, 172, 254, 0.15);
-  --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  --bg-global: #111b1a;
+  --bg-sidebar: #172321;
+  --bg-navbar: #172321;
+  --bg-content: radial-gradient(circle at top left, #1b2b28, #111b1a);
+  --text-primary: #edf5f2;
+  --text-secondary: #a0b2ad;
+  --border-color: rgba(220, 244, 236, 0.1);
+  --hover-bg: rgba(220, 244, 236, 0.06);
+  --primary-color: #6ac2a2;
+  --card-bg: #192825;
+  --badge-bg: rgba(106, 194, 162, 0.14);
+  --shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
 }
 
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--bg-global);
+  background: var(--bg-global);
   color: var(--text-primary);
   min-height: 100vh;
+  min-width: 320px;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #root {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid rgba(50, 138, 115, 0.45);
+  outline-offset: 3px;
 }
 
 /* === LAYOUT GLOBAL === */
