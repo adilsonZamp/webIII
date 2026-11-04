@@ -13,7 +13,7 @@ const loginComGoogle = async (credential) => {
     });
 
     const payload = ticket.getPayload();
-    const { sub, email, name, email_verified } = payload;
+    const { sub, email, name, email_verified, picture } = payload;
 
     // console.log(payload);
     

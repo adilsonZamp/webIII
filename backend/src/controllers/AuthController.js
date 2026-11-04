@@ -13,6 +13,8 @@ const loginGoogle = async (req, res) => {
         return res.status(200).json(dados);
 
     } catch (error) {
+        console.log("ERROR: "+error);
+        
         return res.status(401).json({ error: 'Falha na autenticação com o Google' });
     }
 };

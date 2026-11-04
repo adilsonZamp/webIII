@@ -58,6 +58,8 @@ export const AuthProvider = ({ children }) => {
             return true;
         } catch (error) {
             setErro('Não foi possível entrar com o Google');
+            console.log("ERROOO: "+error);
+            
             return false;
         } finally {
             setCarregando(false);
